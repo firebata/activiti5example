@@ -1,0 +1,109 @@
+activiti版本 5.19.0
+
+常用查询
+select * from ACT_HI_VARINST;-- 历史变量表
+select * from ACT_HI_TASKINST;-- 历史任务实例表
+select * from ACT_HI_PROCINST;-- 历史流程实例表：END_ACT_ID_有值表示流程结束
+select * from ACT_HI_ACTINST;-- 历史节点表， 保存流程中所有的节点 
+select * from ACT_HI_IDENTITYLINK;-- 历史流程人员表
+select * from ACT_RU_EXECUTION;-- 运行时流程执行实例表
+select * from ACT_RU_TASK;-- 运行时任务节点表
+select * from ACT_RU_IDENTITYLINK; -- 运行时流程人员表，主要存储任务节点与参与者的相关信息
+select * from ACT_RU_VARIABLE;-- 运行时流程变量数据表
+
+
+-- SELECT * FROM act_ge_property;
+-- SELECT * FROM act_re_deployment;
+-- SELECT * FROM act_ge_bytearray;
+-- SELECT * FROM act_re_procdef;
+
+删除表记录
+DELETE FROM  act_ru_job;
+DELETE FROM  act_ru_identitylink;
+DELETE FROM  act_ru_task;
+DELETE FROM  act_ru_variable;
+DELETE FROM  act_ru_event_subscr;
+DELETE FROM  act_ru_execution;
+DELETE FROM  act_evt_log;
+DELETE FROM  act_ge_property;
+DELETE FROM  act_hi_actinst;
+DELETE FROM  act_hi_attachment;
+DELETE FROM  act_hi_comment;
+DELETE FROM  act_hi_detail;
+DELETE FROM  act_hi_identitylink;
+DELETE FROM  act_hi_procinst;
+DELETE FROM  act_hi_taskinst;
+DELETE FROM  act_hi_varinst;
+DELETE FROM  act_id_info;
+DELETE FROM  act_id_membership;
+DELETE FROM  act_id_user;
+DELETE FROM  act_re_model;
+DELETE FROM  act_procdef_info;
+DELETE FROM  act_re_procdef;
+DELETE FROM  act_ge_bytearray;
+DELETE FROM  act_re_deployment;
+DELETE FROM  act_re_model;
+DELETE FROM  act_id_group;
+
+INSERT INTO `activiti`.`act_ge_property` (`NAME_`, `VALUE_`, `REV_`) VALUES ('next.dbid', '5001', '3');
+INSERT INTO `activiti`.`act_ge_property` (`NAME_`, `VALUE_`, `REV_`) VALUES ('schema.history', 'create(5.18.0.1)', '1');
+INSERT INTO `activiti`.`act_ge_property` (`NAME_`, `VALUE_`, `REV_`) VALUES ('schema.version', '5.18.0.1', '1');
+
+
+增加更新时间字段
+ALTER TABLE act_ru_job   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_ru_identitylink   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_ru_task   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_ru_variable   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_ru_event_subscr   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_ru_execution   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_evt_log   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_ge_bytearray   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_ge_property   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_hi_actinst   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_hi_attachment   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_hi_comment   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_hi_detail   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_hi_identitylink   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_hi_procinst   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_hi_taskinst   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_hi_varinst   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_id_group   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_id_info   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_id_membership   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_id_user   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_re_deployment   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_re_model   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE act_re_procdef   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP; 
+ALTER TABLE act_procdef_info   ADD COLUMN `UPDATE_TIME` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP; 
+
+
+删除表字段
+
+
+DROP TABLE   act_ru_job;
+DROP TABLE   act_ru_identitylink;
+DROP TABLE   act_ru_task;
+DROP TABLE   act_ru_variable;
+DROP TABLE   act_ru_event_subscr;
+DROP TABLE   act_ru_execution;
+DROP TABLE   act_evt_log;
+DROP TABLE   act_ge_property;
+DROP TABLE   act_hi_actinst;
+DROP TABLE   act_hi_attachment;
+DROP TABLE   act_hi_comment;
+DROP TABLE   act_hi_detail;
+DROP TABLE   act_hi_identitylink;
+DROP TABLE   act_hi_procinst;
+DROP TABLE   act_hi_taskinst;
+DROP TABLE   act_hi_varinst;
+DROP TABLE   act_id_info;
+DROP TABLE   act_id_membership;
+DROP TABLE   act_id_user;
+DROP TABLE   act_re_model;
+DROP TABLE   act_procdef_info;
+DROP TABLE   act_re_procdef;
+DROP TABLE   act_ge_bytearray;
+DROP TABLE   act_re_deployment;
+DROP TABLE   act_re_model;
+DROP TABLE   act_id_group;
