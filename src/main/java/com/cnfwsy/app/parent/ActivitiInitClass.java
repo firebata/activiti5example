@@ -7,6 +7,7 @@ import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.task.Task;
+import org.apache.log4j.Logger;
 import org.junit.BeforeClass;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -16,7 +17,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  */
 public class ActivitiInitClass {
-
+	private final Logger logger = Logger.getLogger(this.getClass().getName());
 	protected static ClassPathXmlApplicationContext applicationContext;
 	protected static RepositoryService repositoryService;
 	protected static RuntimeService runtimeService;
@@ -36,8 +37,8 @@ public class ActivitiInitClass {
 	}
 
 	protected void log(String logMsg) {
-		
-		System.out.println(this.getClass().getName() + ":" + logMsg);
-		
+
+		logger.info(this.getClass().getName() + ":" + logMsg);
+
 	}
 }
