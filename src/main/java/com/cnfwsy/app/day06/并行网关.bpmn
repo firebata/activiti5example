@@ -18,7 +18,8 @@
     <sequenceFlow id="flow7" sourceRef="parallelgateway2" targetRef="usertask4"></sequenceFlow>
     <sequenceFlow id="flow8" sourceRef="usertask3" targetRef="parallelgateway3"></sequenceFlow>
     <sequenceFlow id="flow9" sourceRef="usertask4" targetRef="parallelgateway3"></sequenceFlow>
-    <sequenceFlow id="flow10" sourceRef="parallelgateway3" targetRef="theEnd"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow11" sourceRef="parallelgateway3" targetRef="endevent1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_activitiAdhoc">
     <bpmndi:BPMNPlane bpmnElement="activitiAdhoc" id="BPMNPlane_activitiAdhoc">
@@ -45,6 +46,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="usertask4" id="BPMNShape_usertask4">
         <omgdc:Bounds height="55.0" width="105.0" x="680.0" y="123.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1040.0" y="203.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
         <omgdi:waypoint x="65.0" y="220.0"></omgdi:waypoint>
@@ -87,6 +91,10 @@
         <omgdi:waypoint x="785.0" y="150.0"></omgdi:waypoint>
         <omgdi:waypoint x="910.0" y="150.0"></omgdi:waypoint>
         <omgdi:waypoint x="910.0" y="200.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="930.0" y="220.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1040.0" y="220.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
