@@ -20,6 +20,8 @@ public class Interview extends ActivitiInitClass {
 		String processId = runtimeService.startProcessInstanceByKey("Interview").getId();
 
 		System.out.println("\nprocessId:" + processId);
+		
+		
 		// 得到笔试的流程
 		System.out.println("\n***************笔试流程开始***************");
 

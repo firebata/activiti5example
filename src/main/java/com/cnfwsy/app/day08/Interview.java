@@ -1,6 +1,8 @@
 package com.cnfwsy.app.day08;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.task.Task;
@@ -25,10 +27,12 @@ public class Interview extends ActivitiInitClass {
 		}
 
 		log("唐丹的任务数量：" + taskService.createTaskQuery().taskAssignee("唐丹").count());
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("approved", true);
 		tasks = taskService.createTaskQuery().taskAssignee("唐丹").list();
 		for (Task task : tasks) {
 			log("唐丹的任务：name:" + task.getName() + ",id:" + task.getId());
-			taskService.complete(task.getId());
+			taskService.complete(task.getId(), params);
 		}
 
 		log("唐丹的任务数量：" + taskService.createTaskQuery().taskAssignee("唐丹").count());
@@ -43,9 +47,10 @@ public class Interview extends ActivitiInitClass {
 
 		log("邱经理的任务数量：" + taskService.createTaskQuery().taskAssignee("邱经理").count());
 		tasks = taskService.createTaskQuery().taskAssignee("邱经理").list();
+		params.put("approved", false);
 		for (Task task : tasks) {
 			log("邱经理的任务：name:" + task.getName() + ",id:" + task.getId());
-			taskService.complete(task.getId());
+			taskService.complete(task.getId(), params);
 		}
 
 		log("邱经理的任务数量：" + taskService.createTaskQuery().taskAssignee("邱经理").count());
@@ -62,7 +67,7 @@ public class Interview extends ActivitiInitClass {
 		tasks = taskService.createTaskQuery().taskAssignee("王经理").list();
 		for (Task task : tasks) {
 			log("王经理的任务：name:" + task.getName() + ",id:" + task.getId());
-			taskService.complete(task.getId());
+			taskService.complete(task.getId(), params);
 		}
 
 		log("王经理的任务数量：" + taskService.createTaskQuery().taskAssignee("王经理").count());
@@ -100,7 +105,8 @@ public class Interview extends ActivitiInitClass {
 
 		log("邓经理的任务数量：" + taskService.createTaskQuery().taskAssignee("邓经理").count());
 		log("***************录用流程结束***************");
-		HistoricProcessInstance historicProcessInstance = historyService.createHistoricProcessInstanceQuery().processInstanceId(processId).singleResult();
+		HistoricProcessInstance historicProcessInstance = historyService.createHistoricProcessInstanceQuery()
+				.processInstanceId(processId).singleResult();
 		log("\n流程结束时间：" + historicProcessInstance.getEndTime());
 
 	}

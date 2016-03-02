@@ -10,9 +10,9 @@ public class ServiceTask2 implements JavaDelegate {
 	@Override
 	public void execute(DelegateExecution execution) throws Exception {
 		Thread.sleep(10000);
-		log.info("variavles=" + execution.getVariables());
+		log.error("variavles=" + execution.getVariables());
 		execution.setVariable("task2", "I am task 2");
-		log.info("I am task 2.");
+		log.error("I am task 2.");
 
 	}
 
