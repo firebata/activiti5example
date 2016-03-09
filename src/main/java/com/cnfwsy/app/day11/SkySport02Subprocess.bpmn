@@ -36,6 +36,10 @@
       <sequenceFlow id="flow17" sourceRef="usertask7" targetRef="exclusivegateway4"></sequenceFlow>
       <sequenceFlow id="flow18" sourceRef="startevent3" targetRef="usertask7"></sequenceFlow>
       <sequenceFlow id="flow22" sourceRef="exclusivegateway4" targetRef="endevent3"></sequenceFlow>
+      <endEvent id="errorendevent2" name="ErrorEnd">
+        <errorEventDefinition></errorEventDefinition>
+      </endEvent>
+      <sequenceFlow id="flow32" sourceRef="exclusivegateway4" targetRef="errorendevent2"></sequenceFlow>
     </subProcess>
     <subProcess id="subprocess3" name="审核成衣厂通知单">
       <startEvent id="startevent4" name="Start"></startEvent>
@@ -45,6 +49,10 @@
       <sequenceFlow id="flow25" sourceRef="startevent4" targetRef="usertask8"></sequenceFlow>
       <sequenceFlow id="flow26" sourceRef="usertask8" targetRef="exclusivegateway5"></sequenceFlow>
       <sequenceFlow id="flow27" sourceRef="exclusivegateway5" targetRef="endevent4"></sequenceFlow>
+      <endEvent id="errorendevent1" name="ErrorEnd">
+        <errorEventDefinition></errorEventDefinition>
+      </endEvent>
+      <sequenceFlow id="flow33" sourceRef="exclusivegateway5" targetRef="errorendevent1"></sequenceFlow>
     </subProcess>
     <parallelGateway id="parallelgateway1" name="Parallel Gateway"></parallelGateway>
     <sequenceFlow id="flow19" sourceRef="exclusivegateway3" targetRef="parallelgateway1"></sequenceFlow>
@@ -54,6 +62,16 @@
     <sequenceFlow id="flow23" sourceRef="subprocess2" targetRef="parallelgateway2"></sequenceFlow>
     <sequenceFlow id="flow24" sourceRef="subprocess3" targetRef="parallelgateway2"></sequenceFlow>
     <sequenceFlow id="flow30" sourceRef="parallelgateway2" targetRef="endevent1"></sequenceFlow>
+    <boundaryEvent id="boundaryerror1" name="Error" attachedToRef="subprocess2">
+      <errorEventDefinition></errorEventDefinition>
+    </boundaryEvent>
+    <boundaryEvent id="boundaryerror2" name="Error" attachedToRef="subprocess3">
+      <errorEventDefinition></errorEventDefinition>
+    </boundaryEvent>
+    <sequenceFlow id="flow34" sourceRef="boundaryerror1" targetRef="subprocess1"></sequenceFlow>
+    <sequenceFlow id="flow35" sourceRef="boundaryerror2" targetRef="subprocess1"></sequenceFlow>
+    <serviceTask id="mailtask1" name="Mail Task" activiti:type="mail"></serviceTask>
+    <receiveTask id="receivetask1" name="Receive Task"></receiveTask>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_myProcess">
     <bpmndi:BPMNPlane bpmnElement="myProcess" id="BPMNPlane_myProcess">
@@ -76,7 +94,7 @@
         <omgdc:Bounds height="414.0" width="251.0" x="490.0" y="166.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="startevent2" id="BPMNShape_startevent2">
-        <omgdc:Bounds height="35.0" width="35.0" x="565.0" y="176.0"></omgdc:Bounds>
+        <omgdc:Bounds height="35.0" width="35.0" x="565.0" y="200.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="usertask3" id="BPMNShape_usertask3">
         <omgdc:Bounds height="55.0" width="105.0" x="530.0" y="249.0"></omgdc:Bounds>
@@ -111,6 +129,12 @@
       <bpmndi:BPMNShape bpmnElement="endevent3" id="BPMNShape_endevent3">
         <omgdc:Bounds height="35.0" width="35.0" x="1162.0" y="235.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="errorendevent2" id="BPMNShape_errorendevent2">
+        <omgdc:Bounds height="35.0" width="35.0" x="1093.0" y="168.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="boundaryerror1" id="BPMNShape_boundaryerror1">
+        <omgdc:Bounds height="30.0" width="30.0" x="1060.0" y="77.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="subprocess3" id="BPMNShape_subprocess3">
         <omgdc:Bounds height="327.0" width="221.0" x="1075.0" y="430.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
@@ -126,14 +150,26 @@
       <bpmndi:BPMNShape bpmnElement="endevent4" id="BPMNShape_endevent4">
         <omgdc:Bounds height="35.0" width="35.0" x="1163.0" y="686.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="errorendevent1" id="BPMNShape_errorendevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1100.0" y="609.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="boundaryerror2" id="BPMNShape_boundaryerror2">
+        <omgdc:Bounds height="30.0" width="30.0" x="1060.0" y="670.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="parallelgateway1" id="BPMNShape_parallelgateway1">
         <omgdc:Bounds height="40.0" width="40.0" x="998.0" y="352.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="parallelgateway2" id="BPMNShape_parallelgateway2">
         <omgdc:Bounds height="40.0" width="40.0" x="1330.0" y="352.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="mailtask1" id="BPMNShape_mailtask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="260.0" y="630.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="receivetask1" id="BPMNShape_receivetask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="560.0" y="730.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
-        <omgdi:waypoint x="582.0" y="211.0"></omgdi:waypoint>
+        <omgdi:waypoint x="582.0" y="235.0"></omgdi:waypoint>
         <omgdi:waypoint x="582.0" y="249.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
@@ -219,6 +255,10 @@
         <omgdi:waypoint x="1179.0" y="205.0"></omgdi:waypoint>
         <omgdi:waypoint x="1179.0" y="235.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow32" id="BPMNEdge_flow32">
+        <omgdi:waypoint x="1159.0" y="185.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1128.0" y="185.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow25" id="BPMNEdge_flow25">
         <omgdi:waypoint x="1180.0" y="491.0"></omgdi:waypoint>
         <omgdi:waypoint x="1180.0" y="516.0"></omgdi:waypoint>
@@ -231,6 +271,10 @@
         <omgdi:waypoint x="1180.0" y="646.0"></omgdi:waypoint>
         <omgdi:waypoint x="1180.0" y="686.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow33" id="BPMNEdge_flow33">
+        <omgdi:waypoint x="1160.0" y="626.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1135.0" y="626.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow19" id="BPMNEdge_flow19">
         <omgdi:waypoint x="960.0" y="372.0"></omgdi:waypoint>
         <omgdi:waypoint x="998.0" y="372.0"></omgdi:waypoint>
@@ -242,7 +286,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow21" id="BPMNEdge_flow21">
         <omgdi:waypoint x="1018.0" y="392.0"></omgdi:waypoint>
-        <omgdi:waypoint x="1018.0" y="585.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1018.0" y="590.0"></omgdi:waypoint>
         <omgdi:waypoint x="1075.0" y="593.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow23" id="BPMNEdge_flow23">
@@ -258,6 +302,16 @@
       <bpmndi:BPMNEdge bpmnElement="flow30" id="BPMNEdge_flow30">
         <omgdi:waypoint x="1370.0" y="372.0"></omgdi:waypoint>
         <omgdi:waypoint x="1640.0" y="372.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow34" id="BPMNEdge_flow34">
+        <omgdi:waypoint x="1060.0" y="92.0"></omgdi:waypoint>
+        <omgdi:waypoint x="616.0" y="91.0"></omgdi:waypoint>
+        <omgdi:waypoint x="615.0" y="166.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow35" id="BPMNEdge_flow35">
+        <omgdi:waypoint x="1060.0" y="685.0"></omgdi:waypoint>
+        <omgdi:waypoint x="616.0" y="684.0"></omgdi:waypoint>
+        <omgdi:waypoint x="615.0" y="580.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
