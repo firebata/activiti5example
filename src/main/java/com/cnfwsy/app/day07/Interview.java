@@ -17,11 +17,12 @@ public class Interview extends ActivitiInitClass {
 	public void t1() {
 
 		repositoryService.createDeployment().addClasspathResource("com/cnfwsy/app/day07/Interview.bpmn").deploy();
-		String processId = runtimeService.startProcessInstanceByKey("Interview").getId();
+		identityService.setAuthenticatedUserId("张建华");
+		long curTime = System.currentTimeMillis();
+		String processId = runtimeService.startProcessInstanceByKey("Interview", String.valueOf(curTime)).getId();
 
 		System.out.println("\nprocessId:" + processId);
-		
-		
+
 		// 得到笔试的流程
 		System.out.println("\n***************笔试流程开始***************");
 

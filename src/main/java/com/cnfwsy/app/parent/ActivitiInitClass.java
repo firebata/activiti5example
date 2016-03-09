@@ -3,6 +3,7 @@ package com.cnfwsy.app.parent;
 import java.util.List;
 
 import org.activiti.engine.HistoryService;
+import org.activiti.engine.IdentityService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -23,6 +24,7 @@ public class ActivitiInitClass {
 	protected static RuntimeService runtimeService;
 	protected static TaskService taskService;
 	protected static HistoryService historyService;
+	protected static IdentityService identityService;
 	protected static List<Task> tasks;
 	protected static long count;
 	protected static String userId;
@@ -34,6 +36,7 @@ public class ActivitiInitClass {
 		runtimeService = (RuntimeService) applicationContext.getBean("runtimeService");
 		taskService = (TaskService) applicationContext.getBean("taskService");
 		historyService = (HistoryService) applicationContext.getBean("historyService");
+		identityService = (IdentityService) applicationContext.getBean("identityService");
 	}
 
 	protected void log(String logMsg) {

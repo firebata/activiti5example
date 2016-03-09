@@ -9,10 +9,8 @@
       </extensionElements>
     </startEvent>
     <sequenceFlow id="flow1" sourceRef="request" targetRef="handleRequest"></sequenceFlow>
-    <userTask id="handleRequest" name="Handle vacation request" activiti:candidateGroups="management">
-      <documentation>${employeeName} would like to take ${numberOfDays}
-				day(s) of vacation
-				(Motivation:${vacationMotivation}).</documentation>
+    <userTask id="handleRequest" name="Handle vacation request" activiti:candidateGroups="deptLeader">
+      <documentation>${employeeName} would like to take ${numberOfDays} day(s) of vacation (Motivation:${vacationMotivation}).</documentation>
       <extensionElements>
         <activiti:formProperty id="vacationApproved" name="Do you approve this vacation" type="enum" required="true">
           <activiti:value id="true" name="Approve"></activiti:value>
@@ -33,8 +31,7 @@
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${vacationApproved == 'false'}]]></conditionExpression>
     </sequenceFlow>
     <userTask id="adjustVacationRequestTask" name="Adjust vacation request" activiti:assignee="${employeeName}">
-      <documentation>Your manager has disapproved your vacation request for		${numberOfDays} days.Reason:
-				${managerMotivation}</documentation>
+      <documentation>Your manager has disapproved your vacation request for		${numberOfDays} days.Reason:${managerMotivation}</documentation>
       <extensionElements>
         <activiti:formProperty id="numberOfDays" name="Number of days" type="long" required="true"></activiti:formProperty>
         <activiti:formProperty id="startDate" name="First day of holiday (dd-MM-yyy)" type="date" datePattern="dd-MM-yyyy hh:mm" required="true"></activiti:formProperty>

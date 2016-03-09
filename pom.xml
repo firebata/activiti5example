@@ -7,10 +7,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>activiti Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-	<configuration>
-		<source>1.8</source>
-		<target>1.8</target>
-	</configuration>
 	<properties>
 		<activiti-version>5.19.0</activiti-version>
 		<servlet-api.version>3.1.0</servlet-api.version>
