@@ -17,7 +17,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author zhangjh
  *
  */
-public class ActivitiInitClass {
+
+public abstract class ActivitiInitClass implements ActivitiInter {
 	private final Logger logger = Logger.getLogger(this.getClass().getName());
 	protected static ClassPathXmlApplicationContext applicationContext;
 	protected static RepositoryService repositoryService;
@@ -28,6 +29,8 @@ public class ActivitiInitClass {
 	protected static List<Task> tasks;
 	protected static long count;
 	protected static String userId;
+	protected static String creator;
+	protected static String businessKey;
 
 	@BeforeClass
 	public static void start() {
@@ -40,8 +43,8 @@ public class ActivitiInitClass {
 	}
 
 	protected void log(String logMsg) {
-
 		logger.info(this.getClass().getName() + ":" + logMsg);
 
 	}
+
 }

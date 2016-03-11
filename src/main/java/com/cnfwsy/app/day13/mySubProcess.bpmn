@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
-  <process id="myProcess" name="My process" isExecutable="true">
+  <process id="mySubProcess" name="mySubProcess" isExecutable="true">
     <startEvent id="startevent1" name="Start"></startEvent>
-    <userTask id="usertask1" name="Collect Message "></userTask>
+    <userTask id="usertask1" name="Collect Message " activiti:assignee="zhangjh"></userTask>
     <endEvent id="endevent1" name="End"></endEvent>
     <subProcess id="subprocess1" name="Sub Process">
       <startEvent id="startevent2" name="Start"></startEvent>
       <parallelGateway id="parallelgateway1" name="Parallel Gateway"></parallelGateway>
-      <userTask id="usertask2" name="Check Bank"></userTask>
-      <userTask id="usertask3" name="Check Merchant"></userTask>
+      <userTask id="usertask2" name="Check Bank" activiti:assignee="tangd"></userTask>
+      <userTask id="usertask3" name="Check Merchant" activiti:assignee="wangms"></userTask>
       <parallelGateway id="parallelgateway2" name="Parallel Gateway"></parallelGateway>
       <endEvent id="endevent2" name="End"></endEvent>
       <sequenceFlow id="flow1" sourceRef="startevent2" targetRef="parallelgateway1"></sequenceFlow>
@@ -22,8 +22,8 @@
     <sequenceFlow id="flow4" sourceRef="subprocess1" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow5" sourceRef="usertask1" targetRef="endevent1"></sequenceFlow>
   </process>
-  <bpmndi:BPMNDiagram id="BPMNDiagram_myProcess">
-    <bpmndi:BPMNPlane bpmnElement="myProcess" id="BPMNPlane_myProcess">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_mySubProcess">
+    <bpmndi:BPMNPlane bpmnElement="mySubProcess" id="BPMNPlane_mySubProcess">
       <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
         <omgdc:Bounds height="35.0" width="35.0" x="200.0" y="210.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
