@@ -46,8 +46,14 @@ public class SubProcessTest extends ActivitiInitClass {
 		for (Task task : wangmsTasks) {
 			taskService.complete(task.getId());
 		}
+		
+		
+		
 	}
 
+	
+	
+	
 	@Test
 	public void t2() {
 		List<Task> wangmsTasks = taskService.createTaskQuery().taskCandidateOrAssigned("zhangjh").list();
