@@ -4,6 +4,11 @@ import org.activiti.engine.impl.pvm.PvmTransition;
 import org.activiti.engine.impl.pvm.delegate.ActivityBehavior;
 import org.activiti.engine.impl.pvm.delegate.ActivityExecution;
 
+/**
+ * 
+ * @author zhangjh
+ *
+ */
 public class ThrowsExceptionBehavior implements ActivityBehavior {
 
 	/**
@@ -20,16 +25,14 @@ public class ThrowsExceptionBehavior implements ActivityBehavior {
 			executeLogic(var);
 			transition = execution.getActivity().findOutgoingTransition("no-exception");
 		} catch (Exception e) {
-			transition = execution.getActivity().findOutgoingTransition("exception");
+			transition = execution.getActivity().findOutgoingTransition("exception1");
 		}
 		execution.take(transition);
 
 	}
 
 	private void executeLogic(String var) throws Exception {
-
-		throw new Exception("SKY-");
-
+		throw new Exception();
 	}
 
 }

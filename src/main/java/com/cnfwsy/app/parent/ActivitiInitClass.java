@@ -9,6 +9,8 @@ import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.task.Task;
 import org.apache.log4j.Logger;
+import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -20,20 +22,36 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public abstract class ActivitiInitClass implements ActivitiInter {
 	private final Logger logger = Logger.getLogger(this.getClass().getName());
-	protected static ClassPathXmlApplicationContext applicationContext;
-	protected static RepositoryService repositoryService;
-	protected static RuntimeService runtimeService;
-	protected static TaskService taskService;
-	protected static HistoryService historyService;
-	protected static IdentityService identityService;
-	protected static List<Task> tasks;
-	protected static long count;
-	protected static String userId;
-	protected static String creator;
-	protected static String businessKey;
+	protected ClassPathXmlApplicationContext applicationContext;
+	protected RepositoryService repositoryService;
+	protected RuntimeService runtimeService;
+	protected TaskService taskService;
+	protected HistoryService historyService;
+	protected IdentityService identityService;
+	protected List<Task> tasks;
+	protected long count;
+	protected String userId;
+	protected String creator;
+	protected String businessKey;
 
+	/**
+	 * 开始测试
+	 */
 	@BeforeClass
-	public static void start() {
+	public static void setUpForClass() throws Exception {
+		System.out.println("++++++++ 开始测试 ++++++++");
+	}
+
+	/**
+	 * 结束测试
+	 */
+	@AfterClass
+	public static void testOverForClass() throws Exception {
+		System.out.println("-------- 结束测试 --------");
+	}
+
+	@Before
+	public void start() {
 		applicationContext = new ClassPathXmlApplicationContext("activiti.cfg.xml");
 		repositoryService = (RepositoryService) applicationContext.getBean("repositoryService");
 		runtimeService = (RuntimeService) applicationContext.getBean("runtimeService");

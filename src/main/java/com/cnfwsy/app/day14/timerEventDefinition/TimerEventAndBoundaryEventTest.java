@@ -21,11 +21,14 @@ import com.cnfwsy.app.parent.ActivitiInitClass;
  */
 public class TimerEventAndBoundaryEventTest extends ActivitiInitClass {
 
-	@Test
 	@Override
-	@Deployment(resources = "com/cnfwsy/app/day14/timerEventDefinition/TimerEventDefinition.bpmn")
+	@Test
+	// @Deployment(resources =
+	// "com/cnfwsy/app/day14/timerEventDefinition/TimerEventDefinition.bpmn")
 	public void t1() {
+		String resourceName = "com/cnfwsy/app/day14/timerEventDefinition/TimerEventDefinition.bpmn";
 
+		repositoryService.createDeployment().addClasspathResource(resourceName).deploy();
 		creator = "zhangjh";
 		identityService.setAuthenticatedUserId(creator);
 
@@ -36,13 +39,6 @@ public class TimerEventAndBoundaryEventTest extends ActivitiInitClass {
 		String businessKey = String.valueOf(System.currentTimeMillis());
 
 		runtimeService.startProcessInstanceByKey(processDefinitionKey, businessKey, variables);
-		
-		
-		
-		
-		
-		
-		
 
 	}
 

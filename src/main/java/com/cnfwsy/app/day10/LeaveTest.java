@@ -18,7 +18,7 @@ import com.cnfwsy.app.parent.ActivitiInitClass;
 public class LeaveTest extends ActivitiInitClass {
 
 	@Test
-	public void test() {
+	public void t1() {
 		
 		repositoryService.createDeployment().addClasspathResource("com/cnfwsy/app/day10/请假流程.bpmn").deploy();
 		String processId = runtimeService.startProcessInstanceByKey("leave").getId();
@@ -70,4 +70,6 @@ public class LeaveTest extends ActivitiInitClass {
 		}
 
 	}
+
+	
 }
