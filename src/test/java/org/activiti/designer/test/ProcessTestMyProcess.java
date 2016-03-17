@@ -33,4 +33,8 @@ public class ProcessTestMyProcess {
 		System.out.println("id " + processInstance.getId() + " "
 				+ processInstance.getProcessDefinitionId());
 	}
+	
+	
+	
+	
 }
