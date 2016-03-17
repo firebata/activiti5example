@@ -15,7 +15,7 @@ import org.junit.Test;
 
 public class ProcessTestMyProcess {
 
-	private String filename = "D:\work\project\activiti\src\main\java\com\cnfwsy\app\day11\SkySport02Subprocess.bpmn";
+	private String filename = "D:\\work\\project\\activiti\\src\\main\\java\\com\\cnfwsy\\app\\day11\\SkySport02Subprocess.bpmn";
 
 	@Rule
 	public ActivitiRule activitiRule = new ActivitiRule();
